@@ -32,13 +32,28 @@ body{
     outline: 2px solid rgba(120,120,120,0.623);
 }
 
-button{
-    padding: 10px;
-    background: #cb1515;
-    color: #fff;
-    border-radius: .5rem;
+
+.flaoting_parent{
+    position: fixed;
+    top: 80%;
+    right: 18px;
+    text-align: center;
+    color: blue;
+    z-index: 1000;
+}
+ .flaoting_parent .right_button{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-color: #EF9234;
+    background-size: 24px;
+    background-position: center;
+    display: flex;
+    float: right;
+    margin: 0 auto;
+    border: 1px solid #EF9234;
     cursor: pointer;
-    border: none;
-    font-size: 1rem;
-    font-weight: bold;
+    transition: transform 0.5s;
+   
 }

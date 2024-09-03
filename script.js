@@ -1,13 +1,38 @@
-const textEL = document.getElementById('text');
-const speakEL = document.getElementById('speak');
+<script type="text/javascript">
+    let isTTSActive = false; 
 
-speakEL.addEventListener('click', speakText);
-function speakText() {
+    const speakEL = document.getElementById('rightButton');
+    const iconEL = speakEL.querySelector('i');
 
-    // stop any speaking in progress
-    window.speechSynthesis.cancel();
+    speakEL.addEventListener('click', toggleTTS);
+   
 
-    const text = textEL.value;
-    const utterance = new SpeechSynthesisUtterance(text);
-    window.speechSynthesis.speak(utterance);
-}
+    function toggleTTS() {
+        isTTSActive = !isTTSActive; 
+
+        if (isTTSActive) {
+            iconEL.classList.remove('fa-microphone');
+            iconEL.classList.add('fa-microphone-slash');
+            document.addEventListener('mouseup', speakSelectedText);
+        } else {
+            iconEL.classList.remove('fa-microphone-slash');
+            iconEL.classList.add('fa-microphone');
+            window.speechSynthesis.cancel(); 
+            document.removeEventListener('mouseup', speakSelectedText);
+        }
+    }
+
+    function speakSelectedText() {
+        
+        window.speechSynthesis.cancel();
+
+        
+        const selectedText = window.getSelection().toString();
+
+      
+        if (selectedText) {
+            const utterance = new SpeechSynthesisUtterance(selectedText);
+            window.speechSynthesis.speak(utterance);
+        }
+    }
+</script>
